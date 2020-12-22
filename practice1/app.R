@@ -43,7 +43,8 @@ server <- function(input, output, session) {
             geom_histogram(binwidth = input$n, alpha = .7, position = "identity", aes(y=..density..)) +
             labs(title = input$plot_title, x = input$x_title) +
             theme(plot.title = element_text(hjust = 0.5, size = 20), axis.title.x = element_text(size = 12))
-    }, res = 96)
+    }, res = 96, 
+    height = (150 * nrow(ddply(dat,~Study,summarise,number_of_distinct_orders=length(unique(Study))))))
     
 }
 
